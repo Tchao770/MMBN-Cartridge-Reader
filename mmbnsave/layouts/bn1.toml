@@ -1,0 +1,321 @@
+# Mega Man Battle Network 1 (USA) — save layout
+#
+# Every offset below is a byte offset into the save file (= SRAM on the cart).
+# BN1 saves by copying EWRAM 0x02000000..0x02002307 straight to SRAM, so a save
+# offset is the same as (EWRAM address - 0x02000000).
+#
+# Source of truth: Silenthal/bn1 disassembly
+#   source/save.S      — save length 0x2308, checksum algorithm, build ID
+#   ld_script.ld       — gFlagBase=0x000, gWorld=0x210, gKeyItemInventory=0x2D0, gGameStats=0x3D0
+#   include/mmbn.h     — struct World / struct GameStats field order
+#   source/flag.S      — flag bit order (MSB first), library flags = 0x100 + chip id
+#   source/main_menu.S + credits.S — title-screen star = base flag 0x05, set after the credits
+#   source/key_item.S  — HP = 100 + 20 * HPMemory count
+# Verified against playground/save files/m1.sav and mmbn1.2104.sav (checksums match).
+
+[game]
+id = "bn1"
+name = "Mega Man Battle Network"
+region = "USA"
+save_length = 0x2308
+signature = { offset = 0x3FC, ascii = "ROCKMAN EXE 20010727" }   # GameStats.buildId
+rom_game_codes = ["AREE"]   # ROM header 0xAC (for cart identification); unverified on real cart
+
+[checksum]
+kind = "byte_sum"     # sum of every byte in [start, end) with the checksum field zeroed, plus `add`
+offset = 0x3F0        # GameStats.checksum (u32)
+start = 0x0
+end = 0x2308
+add = 0x16
+
+[flags]
+base = 0x000
+bit_order = "msb"     # flag n -> byte base + n//8, mask 0x80 >> (n % 8)
+
+[flags.named]
+star_game_cleared = 0x005   # title-screen star; set when you save after the credits
+
+[fields.story_flag]
+offset = 0x216        # World.storyFlag
+type = "u8"
+
+[fields.zenny]
+offset = 0x284        # World.zenny
+type = "u32"
+max = 999999          # cap applied by the game when awarding zenny
+
+[fields.hp_max]
+offset = 0x22E        # World.hpMax (0x22C is hpCurrent)
+type = "u16"
+max = 1000
+
+[fields.play_time_frames]
+offset = 0x3E8        # GameStats.gameTimer, 60 frames per second, capped at 99:59
+type = "u32"
+
+[fields.buster_attack]
+offset = 0x224        # World.statAttack (0 = level 1)
+type = "u8"
+max = 4
+
+[fields.buster_speed]
+offset = 0x225
+type = "u8"
+max = 4
+
+[fields.buster_charge]
+offset = 0x226
+type = "u8"
+max = 4
+
+[fields.hp_memories]
+offset = 0x310        # gKeyItemInventory[Item_HpMemory=64]
+type = "u8"
+max = 45              # 100 + 45 * 20 = 1000 HP
+
+[fields.heat_armor]
+offset = 0x314        # gKeyItemInventory[Item_HeatArmr=68]
+type = "bool"
+
+[fields.aqua_armor]
+offset = 0x315        # gKeyItemInventory[Item_AquaArmr=69]
+type = "bool"
+
+[fields.wood_armor]
+offset = 0x316        # gKeyItemInventory[Item_WoodArmr=70]
+type = "bool"
+
+[fields.battles_total]
+offset = 0x3E2        # GameStats.totalBattles16
+type = "u16"
+
+[story]
+field = "story_flag"
+chapter_shift = 4     # high nibble = scenario index (0-5)
+chapters = 6
+final = 84
+
+[library]
+flag_offset = 0x100   # library flag = 0x100 + chip id
+secret = [199]        # Bass: not counted toward the 175 standard chips
+
+[library.groups]
+navi = { first = 148, last = 198 }   # PharoMan .. ElecMan3
+
+[library.chips]
+1 = "Cannon"
+2 = "HiCannon"
+3 = "M-Cannon"
+4 = "Sword"
+5 = "WideSwrd"
+6 = "LongSwrd"
+7 = "LilBomb"
+8 = "CrosBomb"
+9 = "BigBomb"
+10 = "Spreader"
+11 = "Bubbler"
+12 = "Heater"
+13 = "MiniBomb"
+14 = "Shotgun"
+15 = "CrossGun"
+16 = "ShokWave"
+17 = "SoniWave"
+18 = "DynaWave"
+19 = "FireTowr"
+20 = "AquaTowr"
+21 = "WoodTowr"
+22 = "Quake1"
+23 = "Quake2"
+24 = "Quake3"
+25 = "FireSwrd"
+26 = "ElecSwrd"
+27 = "AquaSwrd"
+28 = "GutsPnch"
+29 = "IcePunch"
+30 = "FtrSword"
+31 = "Dash"
+32 = "KngtSwrd"
+33 = "HeroSwrd"
+34 = "MetGuard"
+37 = "TriArrow"
+38 = "TriSpear"
+39 = "TriLance"
+40 = "Typhoon"
+41 = "Huricane"
+42 = "Cyclone"
+43 = "Howitzer"
+44 = "Thunder1"
+45 = "Thunder2"
+46 = "Thunder3"
+49 = "Snakegg1"
+50 = "Snakegg2"
+51 = "Snakegg3"
+52 = "Hammer"
+55 = "BodyBurn"
+58 = "Ratton1"
+59 = "Ratton2"
+60 = "Ratton3"
+61 = "Lockon1"
+62 = "Lockon2"
+63 = "Lockon3"
+64 = "X-Panel1"
+65 = "X-Panel3"
+67 = "Recov10"
+68 = "Recov30"
+69 = "Recov50"
+70 = "Recov80"
+71 = "Recov120"
+72 = "Recov150"
+73 = "Recov200"
+74 = "Recov300"
+76 = "Steal"
+79 = "Geddon1"
+80 = "Geddon2"
+82 = "Escape"
+83 = "Interupt"
+84 = "LifeAura"
+85 = "AquaAura"
+86 = "FireAura"
+87 = "WoodAura"
+88 = "Repair"
+91 = "Cloud"
+92 = "Cloudier"
+93 = "Cloudest"
+94 = "IceCube"
+95 = "RockCube"
+97 = "TimeBom1"
+98 = "TimeBom2"
+99 = "TimeBom3"
+100 = "Invis1"
+101 = "Invis2"
+102 = "Invis3"
+103 = "IronBody"
+105 = "Remobit1"
+106 = "Remobit2"
+107 = "Remobit3"
+108 = "BstrGard"
+109 = "BstrBomb"
+110 = "BstrSwrd"
+111 = "BstrPnch"
+112 = "RingZap1"
+113 = "RingZap2"
+114 = "RingZap3"
+115 = "Candle1"
+116 = "Candle2"
+117 = "Candle3"
+118 = "SloGauge"
+119 = "FstGauge"
+121 = "Drain1"
+122 = "Drain2"
+123 = "Drain3"
+124 = "Mine1"
+125 = "Mine2"
+126 = "Mine3"
+127 = "Gaia1"
+128 = "Gaia2"
+129 = "Gaia3"
+130 = "BblWrap1"
+131 = "BblWrap2"
+132 = "BblWrap3"
+133 = "Wave"
+134 = "RedWave"
+135 = "BigWave"
+136 = "Muramasa"
+137 = "Dropdown"
+138 = "Popup"
+139 = "Dynamyt1"
+140 = "Dynamyt2"
+141 = "Dynamyt3"
+142 = "Anubis"
+145 = "IronShld"
+146 = "LeafShld"
+147 = "Barrier"
+148 = "PharoMan"
+149 = "PharoMn2"
+150 = "PharoMn3"
+151 = "ShadoMan"
+152 = "ShadoMn2"
+153 = "ShadoMn3"
+157 = "MagicMan"
+158 = "MagicMn2"
+159 = "MagicMn3"
+160 = "Roll"
+161 = "Roll2"
+162 = "Roll3"
+163 = "GutsMan"
+164 = "GutsMan2"
+165 = "GutsMan3"
+166 = "ProtoMan"
+167 = "ProtoMn2"
+168 = "ProtoMn3"
+169 = "WoodMan"
+170 = "WoodMan2"
+171 = "WoodMan3"
+172 = "FireMan"
+173 = "FireMan2"
+174 = "FireMan3"
+175 = "NumbrMan"
+176 = "NumbrMn2"
+177 = "NumbrMn3"
+178 = "StoneMan"
+179 = "StoneMn2"
+180 = "StoneMn3"
+181 = "IceMan"
+182 = "IceMan2"
+183 = "IceMan3"
+184 = "SkullMan"
+185 = "SkullMn2"
+186 = "SkullMn3"
+187 = "ColorMan"
+188 = "ColorMn2"
+189 = "ColorMn3"
+190 = "BombMan"
+191 = "BombMan2"
+192 = "BombMan3"
+193 = "SharkMan"
+194 = "SharkMn2"
+195 = "SharkMn3"
+196 = "ElecMan"
+197 = "ElecMan2"
+198 = "ElecMan3"
+199 = "Bass"
+
+[story.labels]
+0 = "New Game"
+1 = "Tutorial Start"
+2 = "Tutorial End"
+3 = "Oven Fire"
+4 = "Oven Explode"
+5 = "Water Gun"
+6 = "Delete Fireman"
+16 = "Fireman Bed"
+17 = "Class Talk"
+18 = "Dex Talk"
+19 = "Door 1 Unlock"
+20 = "Door 3 Unlock"
+21 = "Megaman Capture"
+32 = "Delete Numberman"
+33 = "Conductor Talk"
+34 = "Delete Stoneman"
+35 = "Dad Powerup"
+36 = "School Cancel"
+37 = "Scilab Night"
+38 = "Polar Bear"
+39 = "Trunk Find"
+48 = "Delete Iceman"
+49 = "Traffic Lights"
+50 = "Light 1 Fix"
+51 = "Expose Www"
+52 = "Light 2 Fix"
+53 = "Light 3 Fix"
+54 = "Light 4 Fix"
+55 = "Light 5 Fix"
+64 = "Delete Colorman"
+65 = "Count Zap"
+66 = "Control Room"
+67 = "Batteries Done"
+80 = "Delete Protoman"
+81 = "Delete Door Virus"
+82 = "Delete Bombman"
+83 = "Bombman Bed"
+84 = "Final"
