@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="NaviDoctor.exe" version="1.2.0.0" publicKeyToken="83b3dd8862a8508a" language="en-US" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="images\icon.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="NaviDoctor" version="1.2.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="NaviDoctor.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NaviDoctor.exe" size="1014728">
+      <assemblyIdentity name="NaviDoctor" version="1.2.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>sHk7Y4d3O6C54SRmNb9esRyZedebmVQPBQQuESYMgvQ=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="images\checkmark.png" size="1499">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>uTGeJsITPsD1qShCaLnDTBKvkbMYSOI5QhYayBxTC3M=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="images\icon.ico" size="168934">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>+XgSYJcXQwG1GsCCQoOD0hmqOFZW/fDPs3PeL/Tsx2M=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="NaviDoctor.exe.config" size="189">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>R+Wg8QGvQVHX8T0ta/qbhH1bXkqY0fRnS3wBV3J0bN8=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=FUNCTIONFOX\power" issuerKeyHash="ab2984d35e155dfec70a3d58b2656dafe53ceeb7" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>FUFasXx7w2ILZ8aVtAm2RRJJsl+AirExeshbtSPuSSg=</DigestValue></Reference></SignedInfo><SignatureValue>bAMjo/yt29oEI4SKCVuOtZ/PL1Mi4bQ/dD0FD+VFHkiLdORa7lgkShexKstYyYwEII5Keg1oUZPK1e+Pxu9PRP2t8/ltsTQcxHemx9g7YMdJ3NmuQPEryvj7eBD6vTxPpuZvxn4hUAJYLodfoCOmhbcRW5PLnCYNeVh3cmDzB5U=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>0MAiJmYMtplISzb4+86RrW5nhtrq9U3pQuyl8oa8YhjXP2wdYGShkjOxeNaGmmcF5AedsMX3hPMkXUg0cUbEtoIsZxqfcvwdeTxrTOYPwE/rsZU87VCMYeb3c4P9Q9ugu6OiVK6TFV38uizSMdDRbil1CuvRq+0epCFqnbZvwjk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="2849ee23b55bc87a31b18a805fb2491245b609b495c6670b62c37b7cb15a4115" Description="" Url=""><as:assemblyIdentity name="NaviDoctor.exe" version="1.2.0.0" publicKeyToken="83b3dd8862a8508a" language="en-US" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=FUNCTIONFOX\power</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>4PvIMjs9LYHTIB7VdFyn/9aGjOSAd8UAqXy0Lpdoegc=</DigestValue></Reference></SignedInfo><SignatureValue>y52NKDT+oXoDfZLTa+FTQ/mTv11dJ1p9Wcry/OejBxr6kmVbNNKDVJDS65GvnVngRDjLgJx0Gu1Sb5SK9z76xaqcveKhaobOY6GfQv+vHd/c5qqoy5+EhiMIQUd3O2xRMi23kXt/5qIkKRnZKUXVChns2WJ0EWk4szncHMNdh1U=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>0MAiJmYMtplISzb4+86RrW5nhtrq9U3pQuyl8oa8YhjXP2wdYGShkjOxeNaGmmcF5AedsMX3hPMkXUg0cUbEtoIsZxqfcvwdeTxrTOYPwE/rsZU87VCMYeb3c4P9Q9ugu6OiVK6TFV38uizSMdDRbil1CuvRq+0epCFqnbZvwjk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB3TCCAUagAwIBAgIQWBwK5h8e7qNNlNedO4jvczANBgkqhkiG9w0BAQsFADAtMSswKQYDVQQDHiIARgBVAE4AQwBUAEkATwBOAEYATwBYAFwAcABvAHcAZQByMB4XDTIzMDUyMTA0NTQzMloXDTI0MDUyMDEwNTQzMlowLTErMCkGA1UEAx4iAEYAVQBOAEMAVABJAE8ATgBGAE8AWABcAHAAbwB3AGUAcjCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA0MAiJmYMtplISzb4+86RrW5nhtrq9U3pQuyl8oa8YhjXP2wdYGShkjOxeNaGmmcF5AedsMX3hPMkXUg0cUbEtoIsZxqfcvwdeTxrTOYPwE/rsZU87VCMYeb3c4P9Q9ugu6OiVK6TFV38uizSMdDRbil1CuvRq+0epCFqnbZvwjkCAwEAATANBgkqhkiG9w0BAQsFAAOBgQBTfdx47c4aCw7I26PJV9ZHL1HF1SMTmylEvidBJj8lKs5Gd2F2tzR2ha7WHOStgUSx+ddbWQ6a3wksbq7S4PSxGL3M1OkxWaqAUAWaak+zaCzVXGyzFGecsDvgJUTyRYs93MMpgU3eqZUWSnqs2Z6jBGnPRRVdHivI7VNsKPl/mw==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
